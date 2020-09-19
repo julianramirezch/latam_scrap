@@ -63,20 +63,20 @@ def flight_connections(flight, driver):
         button.click()
         segments = flight.find_elements_by_xpath('//div[@class="sc-hZSUBg gfeULV"]/div[@class="sc-cLQEGU hyoued"]')
         for idx, escala in enumerate(segments):
-            print('Escala N°: {}'.format(idx + 1))
+            print('Flight connection N°: {}'.format(idx + 1))
             escala = segments[idx].find_elements_by_xpath('.//span[@class="sc-bsbRJL bMMExG"]//abbr')
             escala_time = segments[idx].find_elements_by_xpath('.//span[@class="sc-bsbRJL bMMExG"]//time')
             # Origin
-            print('Lugar de Origen: {} Hora: {}'.format(escala[0].text, escala_time[0].text))
+            print('Origin: {} Departure: {}'.format(escala[0].text, escala_time[0].text))
             # Destiny
-            print('Lugar de Destino: {} Hora: {}'.format(escala[1].text, escala_time[1].text))
+            print('Destiny: {} Departure: {}'.format(escala[1].text, escala_time[1].text))
             # duration
             duration = segments[idx].find_element_by_xpath('.//span[@class="sc-cmthru ipcOEH"]//time').get_attribute('datetime')
-            print('Duracion: {}h'.format(duration))
+            print('Duration: {}h'.format(duration))
             # Numero de vuelo y Avion
             numero = segments[idx].find_element_by_xpath('.//div[@class="airline-flight-details"]//b')
             avion = segments[idx].find_element_by_xpath('.//span[@class="sc-gzOgki uTyOl"]')
-            print('Numero de vuelo: {} Avion: {}'.format(numero.text, avion.text))
+            print('N° Flight: {} Airplane: {}'.format(numero.text, avion.text))
             # Avion
             print('-' * 40)
 
@@ -123,7 +123,7 @@ def departure_func(flight, driver):
 
 
 if __name__ == "__main__":
-    url = 'https://www.latam.com/en_un/apps/personas/booking?fecha1_dia=15&fecha1_anomes=2020-11&from_city1=SCL&to_city1=MIA&ida_vuelta=ida_vuelta&fecha2_dia=05&fecha2_anomes=2020-12&from_city2=MIA&to_city2=SCL&cabina=Y&nadults=1&nchildren=0&ninfants=0&app=deal-finder#/'
+    url = input('Input Flight URL: ')
     options = webdriver.FirefoxOptions()
     driver = webdriver.Firefox(executable_path='./geckodriver.exe')
     delay = 15
@@ -140,7 +140,7 @@ if __name__ == "__main__":
         print('La pagina no cargo correctamente')
         driver.close()
     if len(flights) != 0:
-        print(f'Found {len(flights)}')
+        print(f'Found {len(flights)} Flights')
         for idx, flight in enumerate(flights):
             print(f'<<<<<<<<<<< FLIGHT: {idx + 1} >>>>>>>>>>>')
             general.append(departure_func(flight, driver))
