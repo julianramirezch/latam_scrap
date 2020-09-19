@@ -1,7 +1,7 @@
 <H1 align="center"> Pagina12 Scraper </H1>
 
 <p align="center">
-   <a href="https://www.latam.com"><img src="https://www.latam.com/en_un/" width="220" height="170"/></a>
+   <a href="https://www.latam.com"><img src="https://download.logo.wine/logo/LATAM_Colombia/LATAM_Colombia-Logo.wine.png" width="220" height="170"/></a>
 
 <p align="center"> 
    <b>Web Scraping</b>
